@@ -12,17 +12,22 @@ class MeshComparator:
         self.modelB.reset()
 
     def compare_models(self, featuresA, featuresB, threshold=0.9):
-        #counter of A curves that match with B curves
-        matches = 0
-        #for each curve of A find similarity with every curve of B
-        for vecA in featuresA:
-            similarities = [self.pearson_correlation(vecA, vecB) for vecB in featuresB]
-            # if the best similarity is over threshold there is a match
-            if similarities and max(similarities) >= threshold:
-                matches += 1
-        # returns percent of A curves that match with B curves
-        return matches / len(featuresA) if featuresA.size > 0 else 0
+        def one_way_score(source, target):
+            #counter of source curves that match with target curves
+            matches = 0
+            #for each curve of source find similarity with every curve of target
+            for vecA in source:
+                similarities = [self.pearson_correlation(vecA, vecB) for vecB in target]
+                # if the best similarity is over threshold there is a match
+                if similarities and max(similarities) >= threshold:
+                    matches += 1
+             # returns percent of source curves that match with target curves
+            return matches / len(source) if len(source) > 0 else 0
 
+        score_AB = one_way_score(featuresA, featuresB)
+        score_BA = one_way_score(featuresB, featuresA)
+        return (score_AB + score_BA) / 2
+    
     def pearson_correlation(self, vec1, vec2):
         return np.corrcoef(vec1, vec2)[0, 1]
 
@@ -34,7 +39,7 @@ class MeshComparator:
 
 if __name__ == "__main__":
   
-    model_path1 = "vase.ply"
+    model_path1 = "portrait1.ply"
     model_path2 = "portrait2.ply"
     comparator = MeshComparator(model_path1, model_path2)
     comparator.run()

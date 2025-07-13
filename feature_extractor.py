@@ -367,6 +367,6 @@ class FeatureCurves(Scene3D):
  
 if __name__ == "__main__":
     app =FeatureCurves()
-    app.load_model("vase.ply")
+    app.load_model("tea_cup.ply")
     app.reset()
     app.mainLoop()
