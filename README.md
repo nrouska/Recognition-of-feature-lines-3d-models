@@ -1,9 +1,9 @@
 # Recognition-of-feature-lines-3d-models
 Input: 3D meshes with known connectivity
-1. Sort all points of a 3D shape according to whether they are on a vertex, edge, or flat area.
+1.Sort all points of a 3D shape according to whether they are on a vertex, edge, or flat area.
 For this specific query, the eigenvalues of the covariance matrix of small patches can be analyzed and classified based on these values.
 
-2. Use the previous classification to find features
+2.Use the previous classification to find features
 lines (feature curves) defined e.g. from continuous edge points. For
 for example, in a 3D face the points that define the outline of an eye
 represent a characteristic line.
