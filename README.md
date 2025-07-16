@@ -1,5 +1,6 @@
 # Recognition-of-feature-lines-3d-models
 Input: 3D meshes with known connectivity
+
 1.Sort all points of a 3D shape according to whether they are on a vertex, edge, or flat area.
 For this specific query, the eigenvalues of the covariance matrix of small patches can be analyzed and classified based on these values.
 
@@ -18,6 +19,6 @@ normals, to be recognized as an object. For example the two
 characteristic lines representing the outline of two eyes in one
 person, to be recognized as belonging to the same class.
 
-5. Find the similarity percentage of different models based on these
+5.Find the similarity percentage of different models based on these
 characteristics you have identified in a previous query. For example if
 two human faces are given to be recognized as belonging to the same class.
